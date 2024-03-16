@@ -96,9 +96,7 @@ namespace TigerAndColoredSpheres
         public float platformsSpeedUpMultiplier = 2;
 
         [Tooltip("Delay at the beginning of the game.")]
-        public float platformSpawnStartDelay = 0f;
-
-        public float gameZoneSize = 10f;
+        public float platformSpawnStartDelay = 0f; 
 
         public bool gameFrozen;
         #endregion
@@ -113,7 +111,10 @@ namespace TigerAndColoredSpheres
         }
         public static bool IsPointIngameZone(Vector3 point)
         {
-            return Mathf.Abs(point.x) < Mathf.Abs(instance.gameZoneSize);
+            return !(Camera.main.WorldToScreenPoint(point).x < 0
+                || Camera.main.WorldToScreenPoint(point).x >= Screen.width ||
+                Camera.main.WorldToScreenPoint(point).y < 0
+                || Camera.main.WorldToScreenPoint(point).y >= Screen.height);
         }
         /*
         public static Platform FindClosestPlatformInRow(int row, Vector3 pos, bool ignoreSlippery = false, bool ignoreBallsEmpty = false, float maxDistance = 1000)
@@ -341,10 +342,7 @@ namespace TigerAndColoredSpheres
             {
                 float z = r * rowSize;
                 Gizmos.DrawLine(new Vector3(-platformSpawnDistance, 0, z), new Vector3(platformSpawnDistance, 0, z));
-            }
-            float lastRowDist = (drawRowsCount - 1) * rowSize;
-            Gizmos.DrawLine(new Vector3(-gameZoneSize, 0, 0), new Vector3(-gameZoneSize, 0, lastRowDist));
-            Gizmos.DrawLine(new Vector3(gameZoneSize, 0, 0), new Vector3(gameZoneSize, 0, lastRowDist));
+            } 
         }
     }
 #endif

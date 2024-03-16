@@ -90,7 +90,7 @@ namespace TigerAndColoredSpheres
             for (int b = 0; b < levelBalls.Length; b++)
             {
                 InitializeLevelBall(levelBalls[b].ball, levelBalls[b].count, b);
-            }
+            } 
             ballsPanel.sizeDelta = new Vector2(ballsPanel.sizeDelta.x, GetPanelHeight(levelBalls.Length) + levelBallHeightOffset);
         }
         public List<BallPanel> ballPanels = new List<BallPanel>();
@@ -130,13 +130,15 @@ namespace TigerAndColoredSpheres
             GameObject levelBallPanelObject = Instantiate(levelBallPanelPrefab);
             levelBallPanelObject.name = ball.colorName;
 
+            levelBallPanelObject.GetComponent<RectTransform>().SetParent(ballsPanel);
+            levelBallPanelObject.transform.localScale = Vector3.one;
+
             BallPanel levelBallPanel = new BallPanel(levelBallPanelObject,
                 levelBallPanelObject.transform.GetChild(0).GetComponent<Image>(),//Icon
                 levelBallPanelObject.transform.GetChild(1).GetComponent<Text>(),//Text
                 ball, ballsCount);
 
             ballPanels.Add(levelBallPanel);
-            levelBallPanelObject.GetComponent<RectTransform>().SetParent(ballsPanel);
             levelBallPanelObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -GetPanelHeight(index) - levelBallHeightOffset);
         }
     }

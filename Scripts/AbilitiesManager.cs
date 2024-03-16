@@ -72,7 +72,7 @@ namespace TigerAndColoredSpheres
             {
                 InitializeAbilityPanel(abilities[a], a);
             }
-            abilitiesPanel.sizeDelta = new Vector2(GetPanelWidth(abilities.Length), abilitiesPanel.sizeDelta.y);
+            abilitiesPanel.sizeDelta = new Vector2(GetPanelWidth(abilities.Length) + abilitiesWidthOffset, abilitiesPanel.sizeDelta.y);
         }
 
         public void InitializeAbilityPanel(AbilityAttribute abilityAttribute, int index)
@@ -81,6 +81,8 @@ namespace TigerAndColoredSpheres
             abilityPanelObject.name = abilityAttribute.abilityName;
 
             abilityPanelObject.GetComponent<RectTransform>().SetParent(abilitiesPanel);
+            abilityPanelObject.transform.localScale = Vector3.one;
+
             abilityPanelObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(GetPanelWidth(index) + abilitiesWidthOffset, 0);
 
             AbilityPanel ballPanel = new AbilityPanel(abilityPanelObject,
