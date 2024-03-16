@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872e1caab30c16e499f457d287978f4d, type: 3}
+  m_Name: Level 2
+  m_EditorClassIdentifier: 
+  rowsCount: 2
+  platformSpawnRate: 6
+  platformsSpeedMultiplier: 2.1
+  levelPlatforms:
+  - platform: {fileID: 11400000, guid: 77a77bef14974c844843389a8df613f5, type: 2}
+    spawnChance: 100
+  - platform: {fileID: 11400000, guid: cf667a33f2b715c4cb4ab20f0dc8cf0b, type: 2}
+    spawnChance: 8
+  - platform: {fileID: 11400000, guid: 4828c4a3e24f17e438cca91730eeafb3, type: 2}
+    spawnChance: 8
+  - platform: {fileID: 11400000, guid: c37cb1d5733159642bc343a8229ea1bb, type: 2}
+    spawnChance: 8
+  levelBalls:
+  - ball: {fileID: -8660250417005316160, guid: a49f5b4a8aa8aff46aaf4ee18e8d5f7e, type: 3}
+    count: 5
+  - ball: {fileID: -8660250417005316160, guid: 8cec4102e9ba1ad4b98dc1365eaa5f8a, type: 3}
+    count: 5
+  gapChance: 0
+  bombChance: 0
