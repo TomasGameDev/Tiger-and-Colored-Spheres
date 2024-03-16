@@ -32,6 +32,7 @@ namespace TigerAndColoredSpheres
             if (flyTime <= 0)
             {
                 PickUp();
+                CancelInvoke("FlyToPlayer");
             }
         }
         public void DestroyBall()
