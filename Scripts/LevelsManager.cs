@@ -45,8 +45,15 @@ namespace TigerAndColoredSpheres
             }
             set
             {
-                instance.levelText.text = "Level " + value.ToString();
+                if (instance.levelText != null) instance.levelText.text = "Level " + value.ToString();
                 PlayerPrefs.SetInt("LEVEL", Mathf.Clamp(value, 1, instance.levelAttributes.Length));
+            }
+        }
+        public static int levelsCount
+        {
+            get
+            {
+                return instance.levelAttributes.Length;
             }
         }
         private void Start()
