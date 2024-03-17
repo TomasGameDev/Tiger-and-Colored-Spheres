@@ -56,10 +56,22 @@ namespace TigerAndColoredSpheres
                 return instance.levelAttributes.Length;
             }
         }
+        public static int levelsCompleted
+        {
+            get
+            {
+                return PlayerPrefs.GetInt("LEVELS_COMPLETED");
+            }
+            set
+            {
+                PlayerPrefs.SetInt("LEVELS_COMPLETED", currentLevelIndex);
+            }
+        }
         private void Start()
         {
             instance = this;
             currentLevelIndex = currentLevelIndex;
+            if (levelsCompleted == 0) levelsCompleted = 1;
         }
     }
 }

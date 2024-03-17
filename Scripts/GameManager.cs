@@ -55,7 +55,7 @@ namespace TigerAndColoredSpheres
 
         public static void GoToMenu()
         {
-            PanelsManager.ClosePausePanel();
+            SceneManager.LoadScene("Menu");
         }
 
         void LoadGame()

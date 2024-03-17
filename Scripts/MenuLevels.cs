@@ -15,26 +15,29 @@ namespace TigerAndColoredSpheres
         public GameObject prewLevelsButton;
         public Vector2 offest;
 
+        public int rows = 6;
+        public int columns = 2;
+
         void Start()
         {
             CreateLevels();
+            UpdateText();
         }
-        int columns = 2;
-        int rows = 5;
         void CreateLevels()
         {
             int levelsCount = LevelsManager.levelsCount;
             Vector2 buttonSize = levelButtonPrefab.GetComponent<RectTransform>().sizeDelta;
             int row = 0;
             int column = 0;
-            for (int l = 0; l < rows; l++)
+            for (int l = 0; l < rows * columns; l++)
             {
+                int buttonIndex = l + 1;
                 GameObject levelButton = Instantiate(levelButtonPrefab);
-                levelButton.name = "Level button " + (l + 1).ToString();
+                levelButton.name = "Level button " + buttonIndex.ToString();
                 levelButton.GetComponent<RectTransform>().SetParent(levelsPanel);
                 levelButton.GetComponent<RectTransform>().localScale = Vector3.one;
                 levelButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(
-                    -(offest.x + buttonSize.x) * column - offest.x,
+                    (offest.x + buttonSize.x) * column + offest.x,
                     -(offest.y + buttonSize.y) * row - offest.y
                     );
                 column++;
@@ -43,9 +46,9 @@ namespace TigerAndColoredSpheres
                     row++;
                     column = 0;
                 }
+                levelButton.GetComponent<Button>().onClick.AddListener(delegate { OnButtonClick(buttonIndex); });
 
-                levelButton.GetComponent<Button>().onClick.AddListener(delegate { OnButtonClick(l + 1); });
-                levelButton.transform.GetChild(0).GetComponent<Text>().text = (l + 1).ToString();
+                levelButton.transform.GetChild(0).GetComponent<Text>().text = buttonIndex.ToString();
                 levels.Add(levelButton);
             }
             levelsPanel.sizeDelta = new Vector2(
@@ -57,30 +60,63 @@ namespace TigerAndColoredSpheres
         int panelIndex = 0;
         public void NextLevels()
         {
-            int lastPanelIndex = Mathf.CeilToInt(levels.Count / columns * rows) - 1;
-            if (panelIndex == lastPanelIndex) return;
-            panelIndex++; 
-            for (int l = 0; l < levels.Count; l++)
+            int lastPanelIndex = Mathf.CeilToInt(LevelsManager.levelsCount / (columns * rows));
+            if (panelIndex >= lastPanelIndex) return;
+            panelIndex++;
+            UpdateText();
+            if (panelIndex >= lastPanelIndex)
             {
-                levels[l].transform.GetChild(0).GetComponent<Text>().text = (l + 1 + columns * rows * panelIndex).ToString();
+                nextLevelsButton.SetActive(false);
+                prewLevelsButton.SetActive(true);
             }
-            if (panelIndex == lastPanelIndex) nextLevelsButton.SetActive(false);
-            else nextLevelsButton.SetActive(true);
+            else
+            {
+                nextLevelsButton.SetActive(true);
+                prewLevelsButton.SetActive(true);
+            }
         }
         public void PrewLevels()
         {
             if (panelIndex == 0) return;
             panelIndex--;
+            UpdateText();
+            if (panelIndex <= 0)
+            {
+                prewLevelsButton.SetActive(false);
+                nextLevelsButton.SetActive(true);
+            }
+            else
+            {
+                prewLevelsButton.SetActive(true);
+                nextLevelsButton.SetActive(true);
+            }
+        }
+        void UpdateText()
+        {
             for (int l = 0; l < levels.Count; l++)
             {
-                levels[l].transform.GetChild(0).GetComponent<Text>().text = (l + 1 + columns * rows * panelIndex).ToString();
+                int index = l + 1 + columns * rows * panelIndex;
+                if (index > LevelsManager.levelsCount) levels[l].SetActive(false);
+                else
+                {
+                    if (index > LevelsManager.levelsCompleted)
+                    {
+                        levels[l].GetComponent<Button>().interactable = false;
+                    }
+                    else
+                    {
+                        levels[l].GetComponent<Button>().interactable = true;
+                    }
+                    levels[l].SetActive(true);
+                    levels[l].transform.GetChild(0).GetComponent<Text>().text = (index).ToString();
+                }
             }
-            if (panelIndex == 0) prewLevelsButton.SetActive(false);
-            else prewLevelsButton.SetActive(true);
         }
-        void OnButtonClick(int levelId)
+        void OnButtonClick(int levelIndex)
         {
-            LevelsManager.currentLevelIndex = columns * rows * panelIndex + levelId;
+            int _levelIndex = columns * rows * panelIndex + levelIndex;
+            SoundsManager.PlaySoundOutScene("Button click");
+            LevelsManager.currentLevelIndex = _levelIndex;
             SceneManager.LoadScene("Game");
         }
     }

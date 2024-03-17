@@ -79,7 +79,8 @@ namespace TigerAndColoredSpheres
         public Platform startPlatform;
         public void Jump(Platform _targetPlatform)
         {
-            if (_jumpTime > 0 || isFreeze || (currentPlatform != null && currentPlatform == _targetPlatform)) return;
+            if (_jumpTime > 0 || isFreeze || (currentPlatform != null && (currentPlatform == _targetPlatform) ||
+                (_targetPlatform.TryGetComponent<FragilePlatform>(out FragilePlatform fragilePlatformIsFalling)) && fragilePlatformIsFalling.isFalling)) return;
 
             if (Vector3.Distance(transform.position, _targetPlatform.transform.position) > jumpDistance) return;
 
@@ -200,7 +201,7 @@ namespace TigerAndColoredSpheres
         public void OnLandPlatform(Platform _targetPlatform)
         {
             if (_targetPlatform.type.isSlippery && (_targetPlatform.ball == null || _targetPlatform.ball.colorName != "Bomb"))
-            { 
+            {
                 JumpClosestPlatform();
             }
             if (_targetPlatform.type.isFragile)

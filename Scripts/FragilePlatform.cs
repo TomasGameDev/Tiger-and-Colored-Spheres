@@ -26,7 +26,7 @@ namespace TigerAndColoredSpheres
         public void Fall()
         {
             isFalling = true;
-            InvokeRepeating("Falling", 0, Time.deltaTime);
+            InvokeRepeating("Falling", 0, Time.deltaTime); 
         }
         void Falling()
         {

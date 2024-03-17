@@ -46,3 +46,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelAttributes:
   - {fileID: 11400000, guid: db163fb639709484e9216b9f68c9f072, type: 2}
+  - {fileID: 11400000, guid: ded90f9f517c7804c84fb6062da9b2b8, type: 2}
+  - {fileID: 11400000, guid: fef4b5703b988f740b7128f312136ef6, type: 2}
+  - {fileID: 11400000, guid: 093ae78320a182d41a49b41ecfb98080, type: 2}
+  - {fileID: 11400000, guid: ac2a7adf354a59243822278e6df93222, type: 2}
+  - {fileID: 11400000, guid: 0f9a111cc5f1f6241b3a7b9091284852, type: 2}
+  - {fileID: 11400000, guid: 646c262bd26babb42913525f5da57d87, type: 2}
+  - {fileID: 11400000, guid: 3444a97806f58e046996b53aaa35ad29, type: 2}
+  - {fileID: 11400000, guid: d8e0cf58bd61d504294bf5f5aff8749e, type: 2}
+  - {fileID: 11400000, guid: 9e247bc31ce076f42883437398d0067d, type: 2}
+  setLevel: 0
+  levelText: {fileID: 0}

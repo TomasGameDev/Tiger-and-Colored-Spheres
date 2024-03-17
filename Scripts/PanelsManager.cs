@@ -49,6 +49,7 @@ namespace TigerAndColoredSpheres
         public static void CloseLevelCompletePanel()
         {
             LevelsManager.currentLevelIndex++;
+            LevelsManager.levelsCompleted++;
             GameManager.RestartGame();
         }
 
