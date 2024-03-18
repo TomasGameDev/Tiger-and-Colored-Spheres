@@ -7,7 +7,7 @@ public class LoadingScene : MonoBehaviour
 {
     public RectTransform loadingImage;
     public float progress;
-
+    public string sceneName = "Game";
     void Update()
     {
         if (progress < 1)
@@ -18,7 +18,7 @@ public class LoadingScene : MonoBehaviour
 
             if (progress >= 1)
             {
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene(sceneName);
             }
         }
     }

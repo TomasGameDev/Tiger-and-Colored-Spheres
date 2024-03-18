@@ -117,7 +117,7 @@ namespace TigerAndColoredSpheres
             int _levelIndex = columns * rows * panelIndex + levelIndex;
             SoundsManager.PlaySoundOutScene("Button click");
             LevelsManager.currentLevelIndex = _levelIndex;
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Loading scene Game");
         }
     }
 }

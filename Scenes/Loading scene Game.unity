@@ -326,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingImage: {fileID: 1449521088}
   progress: 0
+  sceneName: Game
 --- !u!114 &422281155
 MonoBehaviour:
   m_ObjectHideFlags: 0
