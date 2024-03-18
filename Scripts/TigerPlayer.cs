@@ -174,9 +174,11 @@ namespace TigerAndColoredSpheres
             else
             {
                 abilityTime -= Time.deltaTime;
+                AbilitiesManager.SetAbilityTime(1f / currentAbility.abilityTime * abilityTime, currentAbility);
                 if (abilityTime <= 0)
                 {
                     currentAbility = null;
+                    AbilitiesManager.SetAbilitiesTime(0f);
                 }
                 else if (currentAbility.magnetic)
                 {

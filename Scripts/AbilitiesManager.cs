@@ -46,6 +46,8 @@ namespace TigerAndColoredSpheres
         public static void ActivateAbility(AbilityAttribute ability)
         {
             TigerPlayer.instance.currentAbility = ability;
+
+            SetAbilitiesTime(1f);
         }
         public List<AbilityPanel> abilityPanels = new List<AbilityPanel>();
 
@@ -85,19 +87,48 @@ namespace TigerAndColoredSpheres
 
             abilityPanelObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(GetPanelWidth(index) + abilitiesWidthOffset, 0);
 
-            AbilityPanel ballPanel = new AbilityPanel(abilityPanelObject,
+            AbilityPanel abilityPanel = new AbilityPanel(abilityPanelObject,
                 abilityPanelObject.transform.GetChild(0).GetComponent<Image>(),//Icon
                 abilityPanelObject.transform.GetChild(1).GetComponent<Text>(),//Text
                 abilityAttribute);
 
             abilityPanelObject.GetComponent<Button>().onClick.AddListener(delegate { OnBuyAbility(abilityAttribute); });
-
-            abilityPanels.Add(ballPanel);
+            abilityPanel.abilityAttribute = abilityAttribute;
+            abilityPanels.Add(abilityPanel);
         }
 
         public void OnBuyAbility(AbilityAttribute ability)
         {
             GameShop.BuyAbility(ability);
         }
+        /// <summary>
+        /// range 0-1
+        /// </summary>
+        /// <param name="value"></param>
+        public static void SetAbilityTime(float value, AbilityAttribute abilityAttribute)
+        {
+            for (int a = 0; a < instance.abilityPanels.Count; a++)
+            {
+                if (instance.abilityPanels[a].abilityAttribute.name == abilityAttribute.name)
+                {
+                    instance.abilityPanels[a].icon.transform.GetChild(0).GetComponent<RectTransform>().anchorMax = new Vector2(value, 1f);
+                    if (value == 1) instance.abilityPanels[a].icon.transform.GetChild(0).GetComponent<Image>().color = new Color(0.15f, 0f, 0f, 0.6f);
+                    else instance.abilityPanels[a].icon.transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.35f);
+                }
+            }
+        }
+        /// <summary>
+        /// range 0-1
+        /// </summary>
+        /// <param name="value"></param>
+        public static void SetAbilitiesTime(float value)
+        {
+            for (int a = 0; a < instance.abilityPanels.Count; a++)
+            {
+                instance.abilityPanels[a].icon.transform.GetChild(0).GetComponent<RectTransform>().anchorMax = new Vector2(value, 1f);
+                if (value == 1) instance.abilityPanels[a].icon.transform.GetChild(0).GetComponent<Image>().color = new Color(0.15f, 0f, 0f, 0.6f);
+                else instance.abilityPanels[a].icon.transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.35f);
+            }
+        } 
     }
 }

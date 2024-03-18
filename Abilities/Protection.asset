@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Protection
   m_EditorClassIdentifier: 
   abilityName: Shield
-  icon: {fileID: 21300000, guid: d75f8b1d41b93e048b7ee957a4099e9b, type: 3}
+  icon: {fileID: 21300000, guid: fa6423493881a8944ba08b6667cd6307, type: 3}
   prtice: 100
   abilityTime: 15
   protection: 1
