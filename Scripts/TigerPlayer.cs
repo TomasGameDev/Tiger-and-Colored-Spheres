@@ -77,12 +77,12 @@ namespace TigerAndColoredSpheres
         [Space]
 
         public Platform startPlatform;
-        public void Jump(Platform _targetPlatform)
+        public bool Jump(Platform _targetPlatform)
         {
             if (_jumpTime > 0 || isFreeze || (currentPlatform != null && (currentPlatform == _targetPlatform) ||
-                (_targetPlatform.TryGetComponent<FragilePlatform>(out FragilePlatform fragilePlatformIsFalling)) && fragilePlatformIsFalling.isFalling)) return;
+                (_targetPlatform.TryGetComponent<FragilePlatform>(out FragilePlatform fragilePlatformIsFalling)) && fragilePlatformIsFalling.isFalling)) return false;
 
-            if (Vector3.Distance(transform.position, _targetPlatform.transform.position) > jumpDistance) return;
+            if (Vector3.Distance(transform.position, _targetPlatform.transform.position) > jumpDistance) return false;
 
             if (firstJump)
             {
@@ -106,6 +106,8 @@ namespace TigerAndColoredSpheres
             _jumpTime = jumpTime;
 
             SoundsManager.PlaySound("Jump");
+
+            return true;
         }
         Vector2 lastPosition;
         Vector2 GetPos2D(Vector3 pos)
@@ -194,7 +196,7 @@ namespace TigerAndColoredSpheres
         {
             if ((currentAbility != null && !ignoreProtection && currentAbility.protection) || isFreeze) return;
             isFreeze = true;
-            PlatformsManager.instance.gameFrozen = true;
+            PlatformsManager.instance.generatePlatforms = true;
             PanelsManager.OpenGameOverPanel();
         }
 

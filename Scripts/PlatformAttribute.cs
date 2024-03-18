@@ -11,5 +11,13 @@ namespace TigerAndColoredSpheres
         public bool isFast = false;
         public bool isFragile = false;
         public bool isSlippery = false; 
+
+        public bool isDefault
+        {
+            get
+            {
+                return !isFast && !isFragile && !isSlippery;
+            }
+        }
     }
 }

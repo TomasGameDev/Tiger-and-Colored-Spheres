@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace TigerAndColoredSpheres
 {
@@ -98,6 +99,7 @@ namespace TigerAndColoredSpheres
         [Tooltip("Delay at the beginning of the game.")]
         public float platformSpawnStartDelay = 0f;
 
+        public bool generatePlatforms;
         public bool gameFrozen;
 
         public bool preloadPlatforms;
@@ -242,6 +244,7 @@ namespace TigerAndColoredSpheres
                 }
             } 
         } 
+
         public void CreatePlatformRandom(int row)
         {
             int platformIndex = platformsChanceList[Random.Range(0, platformsChanceList.Count)];
@@ -298,6 +301,7 @@ namespace TigerAndColoredSpheres
         }
         private void FixedUpdate()
         {
+            if (gameFrozen) return;
             if (LevelsManager.currentLevel.levelPlatforms.Length == 0) return;
 
             for (int r = 0; r < rows.Length; r++)
@@ -331,7 +335,7 @@ namespace TigerAndColoredSpheres
                     }
                 }
 
-                if (!gameFrozen)
+                if (!generatePlatforms)
                 {
                     rows[r].time += Time.deltaTime * Mathf.Abs(rows[r].speed);
 

@@ -7,10 +7,11 @@ namespace TigerAndColoredSpheres
     public class MagnetEffect : MonoBehaviour
     {
         public Transform[] particles;
-        public float animationSpeed = 1;
+        public float animationSpeed = 10;
+        public float animationRange = 12;
         void Update()
         {
-            float magnetDist = TigerPlayer.instance.magneticAbilityDistance;
+            float magnetDist = animationRange;
             for (int p = 0; p < particles.Length; p++)
             {
                 if (particles[p].localPosition.magnitude < 0.1f)

@@ -73,7 +73,7 @@ namespace TigerAndColoredSpheres
         {
             PanelsManager.OpenLevelCompletePanel();
             TigerPlayer.instance.isFreeze = true;
-            PlatformsManager.instance.gameFrozen = true;
+            PlatformsManager.instance.generatePlatforms = true;
         }
 
         public bool CheckHasLevelBalls()
