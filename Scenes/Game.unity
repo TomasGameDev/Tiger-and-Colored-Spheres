@@ -4386,6 +4386,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 474457868371458609, guid: 2fecce2016eb5a14eba2174758fc40b1, type: 3}
+      propertyPath: preloadPlatforms
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474457868371458609, guid: 2fecce2016eb5a14eba2174758fc40b1, type: 3}
       propertyPath: platformFallSpeed
       value: 3
       objectReference: {fileID: 0}
@@ -4528,6 +4532,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 355817646}
     m_Modifications:
+    - target: {fileID: 1395280732706778311, guid: a7e50c14593f04649b846d669096e6ee, type: 3}
+      propertyPath: setLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1395280732706778311, guid: a7e50c14593f04649b846d669096e6ee, type: 3}
       propertyPath: levelText
       value: 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rowsCount: 5
   platformSpawnRate: 6
-  platformsSpeedMultiplier: 6
+  platformsSpeedMultiplier: 4
   levelPlatforms:
   - platform: {fileID: 11400000, guid: 77a77bef14974c844843389a8df613f5, type: 2}
     spawnChance: 80

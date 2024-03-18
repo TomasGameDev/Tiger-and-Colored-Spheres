@@ -96,9 +96,12 @@ namespace TigerAndColoredSpheres
         public float platformsSpeedUpMultiplier = 2;
 
         [Tooltip("Delay at the beginning of the game.")]
-        public float platformSpawnStartDelay = 0f; 
+        public float platformSpawnStartDelay = 0f;
 
         public bool gameFrozen;
+
+        public bool preloadPlatforms;
+
         #endregion
         #region Methods
         public Platform FindPlatform(string name)
@@ -222,8 +225,23 @@ namespace TigerAndColoredSpheres
         {
             instance = this;
             InitializeRows();
-        }
 
+            if (preloadPlatforms)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    for (int r = 0; r < rows.Length; r++)
+                    {
+                        CreatePlatformRandom(r);
+                        for (int p = 0; p < rows[r].platforms.Count; p++)
+                        {
+                            Platform _platform = rows[r].platforms[p]; 
+                            _platform.transform.position += Vector3.right * rows[r].speed * LevelsManager.currentLevel.platformsSpeedMultiplier;
+                        }
+                    }
+                }
+            } 
+        } 
         public void CreatePlatformRandom(int row)
         {
             int platformIndex = platformsChanceList[Random.Range(0, platformsChanceList.Count)];
@@ -342,7 +360,7 @@ namespace TigerAndColoredSpheres
             {
                 float z = r * rowSize;
                 Gizmos.DrawLine(new Vector3(-platformSpawnDistance, 0, z), new Vector3(platformSpawnDistance, 0, z));
-            } 
+            }
         }
     }
 #endif
