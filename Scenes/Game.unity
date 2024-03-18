@@ -5661,7 +5661,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1395280732706778311, guid: a7e50c14593f04649b846d669096e6ee, type: 3}
       propertyPath: setLevel
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1395280732706778311, guid: a7e50c14593f04649b846d669096e6ee, type: 3}
       propertyPath: levelText
@@ -5851,7 +5851,7 @@ PrefabInstance:
       objectReference: {fileID: 5387127697229493140}
     - target: {fileID: 7929339010213985955, guid: bf1d92e586df2d14b97c1c1fe284ff95, type: 3}
       propertyPath: startBalance
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7929339010213985955, guid: bf1d92e586df2d14b97c1c1fe284ff95, type: 3}
       propertyPath: startbalance
@@ -6159,6 +6159,10 @@ PrefabInstance:
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 742875776}
+    - target: {fileID: 4043997232195137800, guid: 33ed05ff0e9be244b9eca6d3bcfb139f, type: 3}
+      propertyPath: cameraPanel
+      value: 
+      objectReference: {fileID: 2023233859}
     - target: {fileID: 4043997232195137800, guid: 33ed05ff0e9be244b9eca6d3bcfb139f, type: 3}
       propertyPath: buttonsPanel
       value: 

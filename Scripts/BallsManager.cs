@@ -61,7 +61,7 @@ namespace TigerAndColoredSpheres
             {
                 if (instance.ballPanels[b].data.count > 0 && instance.ballPanels[b].data.ball.colorName == ball.colorName)
                 {
-                    instance.ballPanels[b].SupstractBall();
+                    instance.ballPanels[b].SubstractBall();
                     if (!instance.CheckHasLevelBalls()) instance.OnCollectAllBalls();
                     return true;
                 }
@@ -103,7 +103,7 @@ namespace TigerAndColoredSpheres
             public Text countText;
             public LevelBall data;
 
-            public void SupstractBall()
+            public void SubstractBall()
             {
                 data.count--;
                 countText.text = data.count.ToString();

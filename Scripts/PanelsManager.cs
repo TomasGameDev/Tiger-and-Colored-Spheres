@@ -24,18 +24,9 @@ namespace TigerAndColoredSpheres
         public GameObject levelCompletePanel;
         public GameObject gameOverPanel;
         public GameObject buttonsPanel;
-        public GameObject menuPanel;
+        public GameObject cameraPanel;
         public GameObject purchaseUnsuccessfulPanel;
         public GameObject pausePanel;
-
-        public static void OpenGamePanel()
-        {
-            instance.gamePanel.SetActive(true);
-            instance.buttonsPanel.SetActive(true);
-            instance.menuPanel.SetActive(false);
-            instance.purchaseUnsuccessfulPanel.SetActive(false);
-            instance.pausePanel.SetActive(false);
-        }
 
         public static void OpenLevelCompletePanel()
         {
@@ -67,7 +58,7 @@ namespace TigerAndColoredSpheres
         public static void OpenPausePanel()
         {
             instance.gamePanel.SetActive(false);
-            instance.buttonsPanel.GetComponent<Image>().enabled = false;
+            instance.cameraPanel.GetComponent<Image>().enabled = false;
             instance.pausePanel.SetActive(true);
             instance.purchaseUnsuccessfulPanel.SetActive(false);
         }
@@ -75,7 +66,7 @@ namespace TigerAndColoredSpheres
         {
             instance.gamePanel.SetActive(true);
             instance.pausePanel.SetActive(false);
-            instance.buttonsPanel.GetComponent<Image>().enabled = true;
+            instance.cameraPanel.GetComponent<Image>().enabled = true;
         }
         public static void OpenPurchaseUnsuccessfulPanel()
         {
