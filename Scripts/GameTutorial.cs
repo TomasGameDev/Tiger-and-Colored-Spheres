@@ -16,8 +16,8 @@ namespace TigerAndColoredSpheres
                 gameObject.SetActive(false);
                 return;
             }
-            PlatformsManager.instance.onPlatformCreated += SetFirstPlatform;
-            GameCamera.instance.onSelectPlatform += OnClickPlatform;
+            PlatformsManager.instance.onPlatformCreated += SetFirstPlatform; 
+            TigerPlayer.instance.OnLandPlatformComplete += OnClickPlatform;
         }
         public void SetFirstPlatform(Platform platform, bool isBomb)
         {
@@ -30,13 +30,11 @@ namespace TigerAndColoredSpheres
         }
         public RectTransform clickPlatform;
         public void OnClickPlatform()
-        {
-            PlatformsManager.instance.gameFrozen = false;
-            clickPlatformTutorial = true;
-            clickPlatform.gameObject.SetActive(false);
-            GameCamera.instance.onSelectPlatform -= OnClickPlatform;
-            colorBallTutorialPanel.SetActive(true);
-        }
+        {  
+            clickPlatform.gameObject.SetActive(false); 
+            TigerPlayer.instance.OnLandPlatformComplete -= OnClickPlatform;
+            colorBallTutorialPanel.SetActive(true); 
+        } 
         public void OpenBombTutorial()
         {
             bombTutorialPanel.SetActive(true);
@@ -44,18 +42,16 @@ namespace TigerAndColoredSpheres
         public void CompleteTutorial()
         {
             PlayerPrefs.SetInt("TUTORIAL", 1);
-        }
-        public bool clickPlatformTutorial; 
+            gameObject.SetActive(false);
+            PlatformsManager.instance.gameFrozen = false;
+        } 
         void Update()
-        {
-            if (!clickPlatformTutorial)
-            {
+        { 
                 if (Mathf.Abs(firstPlatform.position.x) < 0.4f)
                 {
                     PlatformsManager.instance.gameFrozen = true;
                 }
-                clickPlatform.position = Camera.main.WorldToScreenPoint(firstPlatform.position);
-            }
+                clickPlatform.position = Camera.main.WorldToScreenPoint(firstPlatform.position); 
         }
     }
 }

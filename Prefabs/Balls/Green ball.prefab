@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorName: Green
-  color: {r: 0.13074706, g: 0.3679245, b: 0, a: 1}
-  isBomb: 0
+  color: {r: 0.20533928, g: 0.5849056, b: 0, a: 1}
 --- !u!1001 &552147053888241019
 PrefabInstance:
   m_ObjectHideFlags: 0

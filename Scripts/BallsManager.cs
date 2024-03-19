@@ -73,7 +73,7 @@ namespace TigerAndColoredSpheres
         {
             PanelsManager.OpenLevelCompletePanel();
             TigerPlayer.instance.isFreeze = true;
-            PlatformsManager.instance.generatePlatforms = true;
+            PlatformsManager.instance.generatePlatforms = false;
         }
 
         public bool CheckHasLevelBalls()
@@ -109,7 +109,7 @@ namespace TigerAndColoredSpheres
                 countText.text = data.count.ToString();
                 if (data.count <= 0)
                 {
-                    panel.GetComponent<Image>().color = new Color(1, 1, 1, 0.4f);
+                    panel.GetComponent<Image>().color = new Color(0.65f, 0.65f, 0.65f, 1f);
                 }
             }
 

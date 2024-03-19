@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace TigerAndColoredSpheres
 {
@@ -77,6 +78,10 @@ namespace TigerAndColoredSpheres
         [Space]
 
         public Platform startPlatform;
+
+        //Events
+        public UnityAction OnLandPlatformComplete;
+
         public bool Jump(Platform _targetPlatform)
         {
             if (_jumpTime > 0 || isFreeze || (currentPlatform != null && (currentPlatform == _targetPlatform) ||
@@ -227,6 +232,7 @@ namespace TigerAndColoredSpheres
                     _targetPlatform.PickUpBall();
                 }
             }
+            if (OnLandPlatformComplete != null) OnLandPlatformComplete();
         }
 
         public void JumpClosestPlatform()
