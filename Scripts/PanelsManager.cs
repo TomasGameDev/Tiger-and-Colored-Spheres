@@ -32,7 +32,7 @@ namespace TigerAndColoredSpheres
         {
             instance.levelCompletePanel.SetActive(true);
             instance.gamePanel.SetActive(false);
-            instance.buttonsPanel.GetComponent<Image>().enabled = false;
+            instance.cameraPanel.GetComponent<Image>().enabled = false;
             instance.purchaseUnsuccessfulPanel.SetActive(false);
             instance.pausePanel.SetActive(false);
         }

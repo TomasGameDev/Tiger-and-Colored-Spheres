@@ -73,7 +73,7 @@ namespace TigerAndColoredSpheres
         {
             PanelsManager.OpenLevelCompletePanel();
             TigerPlayer.instance.isFreeze = true;
-            PlatformsManager.instance.generatePlatforms = false;
+            print(TigerPlayer.instance.isFreeze); 
         }
 
         public bool CheckHasLevelBalls()
@@ -90,7 +90,7 @@ namespace TigerAndColoredSpheres
             for (int b = 0; b < levelBalls.Length; b++)
             {
                 InitializeLevelBall(levelBalls[b].ball, levelBalls[b].count, b);
-            } 
+            }
             ballsPanel.sizeDelta = new Vector2(ballsPanel.sizeDelta.x, GetPanelHeight(levelBalls.Length) + levelBallHeightOffset);
         }
         public List<BallPanel> ballPanels = new List<BallPanel>();
