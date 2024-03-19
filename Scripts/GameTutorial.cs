@@ -11,12 +11,12 @@ namespace TigerAndColoredSpheres
         public GameObject bombTutorialPanel;
         private void Start()
         {
-            if(PlayerPrefs.GetInt("TUTORIAL") == 1)
+            if (PlayerPrefs.GetInt("TUTORIAL") == 1 || (PlayerPrefs.GetInt("TUTORIAL") == 2 && LevelsManager.currentLevelIndex == -1))
             {
                 gameObject.SetActive(false);
                 return;
             }
-            PlatformsManager.instance.onPlatformCreated += SetFirstPlatform; 
+            PlatformsManager.instance.onPlatformCreated += SetFirstPlatform;
             TigerPlayer.instance.OnLandPlatformComplete += OnClickPlatform;
         }
         public void SetFirstPlatform(Platform platform, bool isBomb)
@@ -30,11 +30,16 @@ namespace TigerAndColoredSpheres
         }
         public RectTransform clickPlatform;
         public void OnClickPlatform()
-        {  
-            clickPlatform.gameObject.SetActive(false); 
+        {
+            clickPlatform.gameObject.SetActive(false);
             TigerPlayer.instance.OnLandPlatformComplete -= OnClickPlatform;
-            colorBallTutorialPanel.SetActive(true); 
-        } 
+            if (LevelsManager.currentLevelIndex == -1)
+            {
+                CompleteTutorialEndlessLevel();
+                return;
+            }
+            colorBallTutorialPanel.SetActive(true);
+        }
         public void OpenBombTutorial()
         {
             bombTutorialPanel.SetActive(true);
@@ -44,14 +49,20 @@ namespace TigerAndColoredSpheres
             PlayerPrefs.SetInt("TUTORIAL", 1);
             gameObject.SetActive(false);
             PlatformsManager.instance.gameFrozen = false;
-        } 
+        }
+        public void CompleteTutorialEndlessLevel()
+        {
+            PlayerPrefs.SetInt("TUTORIAL", 2);
+            gameObject.SetActive(false);
+            PlatformsManager.instance.gameFrozen = false;
+        }
         void Update()
-        { 
-                if (Mathf.Abs(firstPlatform.position.x) < 0.4f)
-                {
-                    PlatformsManager.instance.gameFrozen = true;
-                }
-                clickPlatform.position = Camera.main.WorldToScreenPoint(firstPlatform.position); 
+        {
+            if (Mathf.Abs(firstPlatform.position.x) < 0.4f)
+            {
+                PlatformsManager.instance.gameFrozen = true;
+            }
+            clickPlatform.position = Camera.main.WorldToScreenPoint(firstPlatform.position);
         }
     }
 }

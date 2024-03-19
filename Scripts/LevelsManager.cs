@@ -23,6 +23,8 @@ namespace TigerAndColoredSpheres
 
         public LevelAttribute[] levelAttributes;
 
+        public LevelAttribute endlessLevelAttributes;
+
         [Tooltip("Affects level selection if greater than 0.")]
         public int setLevel = 0;
 
@@ -32,7 +34,7 @@ namespace TigerAndColoredSpheres
         {
             get
             {
-                return instance.levelAttributes[currentLevelIndex - 1];
+                return currentLevelIndex > 0 ? instance.levelAttributes[currentLevelIndex - 1] : instance.endlessLevelAttributes;
             }
         }
 
@@ -40,13 +42,16 @@ namespace TigerAndColoredSpheres
         {
             get
             {
-                if (instance.setLevel > 0) return instance.setLevel;
+                if (instance.setLevel != 0) return instance.setLevel;
                 return PlayerPrefs.GetInt("LEVEL");
             }
             set
             {
-                if (instance.levelText != null) instance.levelText.text = "Level " + value.ToString();
-                PlayerPrefs.SetInt("LEVEL", Mathf.Clamp(value, 1, instance.levelAttributes.Length));
+                if (instance.levelText != null)
+                {
+                    instance.levelText.text = currentLevelIndex > 0 ? "Level " + value.ToString() : "";
+                }
+                PlayerPrefs.SetInt("LEVEL", value);
             }
         }
         public static int levelsCount
@@ -64,14 +69,15 @@ namespace TigerAndColoredSpheres
             }
             set
             {
-                PlayerPrefs.SetInt("LEVELS_COMPLETED", currentLevelIndex);
+                PlayerPrefs.SetInt("LEVELS_COMPLETED", value);
             }
         }
         private void Start()
         {
             instance = this;
             currentLevelIndex = currentLevelIndex;
-            if (levelsCompleted == 0) levelsCompleted = 1;
+            if (levelsCompleted <= 0) levelsCompleted = 1;
+            print(levelsCompleted);
         }
     }
 }

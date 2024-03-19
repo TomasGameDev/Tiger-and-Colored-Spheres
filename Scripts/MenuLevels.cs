@@ -119,5 +119,10 @@ namespace TigerAndColoredSpheres
             LevelsManager.currentLevelIndex = _levelIndex;
             SceneManager.LoadScene("Loading scene Game");
         }
+        public void PlayEndlessLevel()
+        {
+            LevelsManager.currentLevelIndex = -1;
+            SceneManager.LoadScene("Loading scene Game");
+        }
     }
 }

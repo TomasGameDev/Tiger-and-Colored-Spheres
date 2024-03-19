@@ -34,6 +34,11 @@ namespace TigerAndColoredSpheres
         {
             PlatformsManager.instance.onPlatformCreated += CreateRandomBallOnPlatform;
 
+            if (LevelsManager.currentLevelIndex == -1)
+            {
+                ballsPanel.gameObject.SetActive(false);
+                return;
+            }
             CreateBallPanels();
         }
 
@@ -57,6 +62,7 @@ namespace TigerAndColoredSpheres
 
         public static bool TryPickUpBall(Ball ball)
         {
+            if (LevelsManager.currentLevelIndex == -1) return true;
             for (int b = 0; b < instance.ballPanels.Count; b++)
             {
                 if (instance.ballPanels[b].data.count > 0 && instance.ballPanels[b].data.ball.colorName == ball.colorName)
@@ -73,7 +79,7 @@ namespace TigerAndColoredSpheres
         {
             PanelsManager.OpenLevelCompletePanel();
             TigerPlayer.instance.isFreeze = true;
-            print(TigerPlayer.instance.isFreeze); 
+            print(TigerPlayer.instance.isFreeze);
         }
 
         public bool CheckHasLevelBalls()

@@ -2621,7 +2621,6 @@ MonoBehaviour:
   colorBallTutorialPanel: {fileID: 1346174104}
   bombTutorialPanel: {fileID: 239956015}
   clickPlatform: {fileID: 923867245}
-  clickPlatformTutorial: 0
 --- !u!1 &676391931
 GameObject:
   m_ObjectHideFlags: 0
@@ -5999,6 +5998,10 @@ PrefabInstance:
       propertyPath: levelText
       value: 
       objectReference: {fileID: 561636375}
+    - target: {fileID: 1395280732706778311, guid: a7e50c14593f04649b846d669096e6ee, type: 3}
+      propertyPath: endlessLevelAttributes
+      value: 
+      objectReference: {fileID: 11400000, guid: 48adc53aff540bc43bd3f741014d3254, type: 2}
     - target: {fileID: 8852172316485945320, guid: a7e50c14593f04649b846d669096e6ee, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -6183,7 +6186,7 @@ PrefabInstance:
       objectReference: {fileID: 5387127697229493140}
     - target: {fileID: 7929339010213985955, guid: bf1d92e586df2d14b97c1c1fe284ff95, type: 3}
       propertyPath: startBalance
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7929339010213985955, guid: bf1d92e586df2d14b97c1c1fe284ff95, type: 3}
       propertyPath: startbalance
