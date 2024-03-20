@@ -261,6 +261,6 @@ namespace TigerAndColoredSpheres
             Gizmos.color = new Color(0, 1, 0, gizmosFade);
             Gizmos.DrawWireSphere(transform.position, magneticAbilityDistance);
         }
-    }
 #endif
+    }
 }

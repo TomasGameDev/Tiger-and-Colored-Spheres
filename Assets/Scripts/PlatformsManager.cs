@@ -366,7 +366,7 @@ namespace TigerAndColoredSpheres
                 Gizmos.DrawLine(new Vector3(-platformSpawnDistance, 0, z), new Vector3(platformSpawnDistance, 0, z));
             }
         }
-    }
 #endif
-    #endregion
+        #endregion
+    }
 }
